@@ -2,7 +2,7 @@
 
 ## 1) Filesystem
 
-### Why it matters
+### Why it matters — Filesystem
 
 The Linux filesystem is where everything lives: files, configs, logs, devices,
 and executables.
@@ -21,7 +21,7 @@ and executables.
 - `/tmp` - temporary files.
 - `/usr/bin` - common installed binaries.
 
-### Commands
+### Key commands — Filesystem
 
 ```bash
 pwd
@@ -30,7 +30,7 @@ cd /etc
 find . -maxdepth 2 -type d
 ```
 
-### Practice
+### Quick practice — Filesystem
 
 ```bash
 mkdir -p ~/lab/fs-demo
@@ -43,7 +43,7 @@ find . -maxdepth 2 -print
 
 ## 2) Permissions
 
-### Why it matters
+### Why it matters — Permissions
 
 Permissions control read, write, and execute access.
 
@@ -61,7 +61,7 @@ Permission symbols:
 - `w` write
 - `x` execute
 
-### Commands
+### Key commands — Permissions
 
 ```bash
 ls -l
@@ -70,7 +70,7 @@ chmod 640 secret.txt
 chown user:group file.txt
 ```
 
-### Practice
+### Quick practice — Permissions
 
 ```bash
 touch demo.txt
@@ -80,11 +80,11 @@ ls -l demo.txt
 
 ## 3) Users and Groups
 
-### Why it matters
+### Why it matters — Users and Groups
 
 Users and groups separate privileges and reduce risk.
 
-### Commands
+### Key commands — Users and Groups
 
 ```bash
 whoami
@@ -101,7 +101,7 @@ sudo usermod -aG sudo trainee
 sudo groupadd devops
 ```
 
-### Practice
+### Quick practice — Users and Groups
 
 ```bash
 id
@@ -110,11 +110,11 @@ getent group sudo
 
 ## 4) Processes
 
-### Why it matters
+### Why it matters — Processes
 
 Every running program is a process.
 
-### Commands
+### Key commands — Processes
 
 ```bash
 ps aux | head -n 10
@@ -132,7 +132,7 @@ kill <pid>
 kill -9 <pid>
 ```
 
-### Practice
+### Quick practice — Processes
 
 ```bash
 sleep 120 &
@@ -142,11 +142,11 @@ kill %1
 
 ## 5) Networking
 
-### Why it matters
+### Why it matters — Networking
 
 Linux networking basics are required for SSH, APIs, and troubleshooting.
 
-### Commands
+### Key commands — Networking
 
 ```bash
 ip a
@@ -162,7 +162,7 @@ getent hosts example.com
 resolvectl status
 ```
 
-### Practice
+### Quick practice — Networking
 
 ```bash
 ss -tuln
@@ -171,11 +171,11 @@ ip route
 
 ## 6) systemd
 
-### Why it matters
+### Why it matters — systemd
 
 Most modern Linux systems use `systemd` for services.
 
-### Commands
+### Key commands — systemd
 
 ```bash
 systemctl status ssh
@@ -190,7 +190,7 @@ journalctl -u ssh -n 50 --no-pager
 sudo systemctl restart ssh
 ```
 
-### Practice
+### Quick practice — systemd
 
 ```bash
 systemctl --failed
@@ -199,7 +199,7 @@ systemctl status NetworkManager || true
 
 ## 7) Logs
 
-### Why it matters
+### Why it matters — Logs
 
 Logs are the first place to investigate failures.
 
@@ -209,7 +209,7 @@ Logs are the first place to investigate failures.
 - `/var/log/messages` (RHEL-like systems)
 - `/var/log/auth.log` (authentication events)
 
-### Commands
+### Key commands — Logs
 
 ```bash
 journalctl -xe --no-pager
@@ -217,7 +217,7 @@ journalctl -u ssh -n 100 --no-pager
 tail -f /var/log/syslog
 ```
 
-### Practice
+### Quick practice — Logs
 
 ```bash
 journalctl -n 20 --no-pager
