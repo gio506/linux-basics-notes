@@ -5,8 +5,10 @@
 
 set -euo pipefail
 
-./scripts/show_sysinfo.sh >/tmp/show_sysinfo.out
-./scripts/check_ports.sh >/tmp/check_ports.out || true
-./scripts/find_large_files.sh . 99999 --dry-run >/tmp/find_large_files.out
+mkdir -p /tmp/linux-lab-smoke
+./scripts/show_sysinfo.sh --json --output /tmp/linux-lab-smoke/sysinfo.json >/tmp/linux-lab-smoke/show_sysinfo.out
+./scripts/check_ports.sh --all --numeric >/tmp/linux-lab-smoke/check_ports.out || true
+./scripts/find_large_files.sh . 99999 --dry-run --top 5 >/tmp/linux-lab-smoke/find_large_files.out
+./scripts/vm_preflight.sh >/tmp/linux-lab-smoke/preflight.out
 
-echo "Smoke tests completed."
+echo "Smoke tests completed. Artifacts in /tmp/linux-lab-smoke"

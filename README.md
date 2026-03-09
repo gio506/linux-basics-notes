@@ -31,7 +31,7 @@ chmod +x scripts/*.sh
 ## Repo Map
 
 - `.github/workflows/ci.yml` - CI pipeline with markdown checks, shellcheck, and
-  script smoke tests.
+  script smoke tests, VM preflight, and bash syntax validation.
 - `.gitkeep` - placeholder file retained for repository scaffolding.
 - `.markdownlint.json` - markdownlint configuration used locally and in CI.
 - `docs/filesystem.md` - Linux filesystem layout, practice commands, and fixes.
@@ -47,6 +47,7 @@ chmod +x scripts/*.sh
 - `scripts/check_ports.sh` - listening port inspector for TCP/UDP.
 - `scripts/lint_markdown.sh` - lightweight markdown style checks.
 - `scripts/check_markdown_links.sh` - validates local markdown links.
+- `scripts/vm_preflight.sh` - checks VM readiness and required command availability.
 - `scripts/smoke_test.sh` - non-destructive script smoke test runner.
 - `CHEATSHEET.md` - top 30 Linux commands with examples.
 - `FILES_EXPLAINED.md` - one-line purpose for every tracked repo file.
@@ -61,16 +62,20 @@ chmod +x scripts/*.sh
 ./scripts/lint_markdown.sh
 ./scripts/check_markdown_links.sh
 shellcheck scripts/*.sh
+for f in scripts/*.sh; do bash -n "$f"; done
+./scripts/vm_preflight.sh --strict
 ./scripts/smoke_test.sh
 ```
 
 ## CI
 
-The pipeline runs 3 ordered stages:
+The pipeline runs 5 ordered stages:
 
 1. markdown lint + markdown link check,
 2. shellcheck,
-3. scripts smoke tests.
+3. bash syntax validation (`bash -n`),
+4. VM preflight checks,
+5. scripts smoke tests.
 
 All changes must pass CI before merge.
 

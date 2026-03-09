@@ -1,6 +1,6 @@
 # Files Explained
 
-- `.github/workflows/ci.yml` - Defines the 3-stage CI pipeline.
+- `.github/workflows/ci.yml` - Defines the 5-stage CI pipeline.
 - `.gitkeep` - Placeholder file kept for repository structure compatibility.
 - `.markdownlint.json` - Markdown linting rules for docs consistency.
 - `CHEATSHEET.md` - Top 30 Linux commands with practical examples.
@@ -22,4 +22,5 @@
 - `scripts/check_markdown_links.sh` - Verifies local markdown links resolve.
 - `scripts/find_large_files.sh` - Large-file scanner with dry-run support.
 - `scripts/show_sysinfo.sh` - Host system summary for quick diagnostics.
+- `scripts/vm_preflight.sh` - Validates VM command/tool readiness for this lab.
 - `scripts/smoke_test.sh` - Non-destructive smoke tests for repository scripts.
