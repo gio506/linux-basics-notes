@@ -19,12 +19,9 @@ chmod +x scripts/*.sh
 ## Topics Index
 
 - [Filesystem](docs/filesystem.md)
-- [Permissions](docs/permissions.md)
-- [Users and groups](docs/users-groups.md)
-- [Processes](docs/processes.md)
+- [Identity and permissions](docs/identity-permissions.md)
+- [Processes, services, and logs](docs/processes-services-logs.md)
 - [Networking](docs/networking.md)
-- [systemd](docs/systemd.md)
-- [Logs](docs/logs.md)
 - [Troubleshooting playbook](docs/troubleshooting.md)
 - [Top commands cheatsheet](CHEATSHEET.md)
 
@@ -35,12 +32,9 @@ chmod +x scripts/*.sh
 - `.gitkeep` - placeholder file retained for repository scaffolding.
 - `.markdownlint.json` - markdownlint configuration used locally and in CI.
 - `docs/filesystem.md` - Linux filesystem layout, practice commands, and fixes.
-- `docs/permissions.md` - file mode and ownership reference with troubleshooting.
-- `docs/users-groups.md` - account/group fundamentals and safe admin checks.
-- `docs/processes.md` - process inspection, signals, and debugging flow.
+- `docs/identity-permissions.md` - combined users, groups, and file permission guide.
+- `docs/processes-services-logs.md` - combined process, systemd, and logging operations.
 - `docs/networking.md` - host networking commands and connectivity checks.
-- `docs/systemd.md` - service lifecycle and unit troubleshooting guide.
-- `docs/logs.md` - log sources and command patterns for investigations.
 - `docs/troubleshooting.md` - cross-topic quick triage checklist.
 - `scripts/show_sysinfo.sh` - read-only host information report.
 - `scripts/find_large_files.sh` - safe large-file scanner with optional dry-run.

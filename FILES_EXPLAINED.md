@@ -5,12 +5,14 @@
 - `.markdownlint.json` - Markdown linting rules for docs consistency.
 - `CHEATSHEET.md` - Top 30 Linux commands with practical examples.
 - `docs/filesystem.md` - Filesystem concepts, commands, and quick fixes.
-- `docs/permissions.md` - Linux permission model and troubleshooting notes.
-- `docs/users-groups.md` - Users/groups basics and access troubleshooting.
-- `docs/processes.md` - Process lifecycle commands and debugging hints.
+- `docs/identity-permissions.md` - Merged identity and permission guide.
+- `docs/permissions.md` - Thin pointer file redirected to merged identity-permissions doc.
+- `docs/users-groups.md` - Thin pointer file redirected to merged identity-permissions doc.
+- `docs/processes.md` - Thin pointer file redirected to merged processes-services-logs doc.
 - `docs/networking.md` - Interface/route/port checks and network fixes.
-- `docs/systemd.md` - Service management and common systemd recovery steps.
-- `docs/logs.md` - Logging commands and log-oriented troubleshooting.
+- `docs/processes-services-logs.md` - Merged process, services, and logs guide.
+- `docs/systemd.md` - Thin pointer file redirected to merged processes-services-logs doc.
+- `docs/logs.md` - Thin pointer file redirected to merged processes-services-logs doc.
 - `docs/troubleshooting.md` - Unified incident triage checklist.
 - `FILES_EXPLAINED.md` - One-line purpose for each repository file.
 - `LICENSE` - MIT license text for project reuse.
