@@ -2,53 +2,49 @@
 
 [![CI](https://github.com/<your-username>/linux-basics-notes/actions/workflows/ci.yml/badge.svg)](https://github.com/<your-username>/linux-basics-notes/actions/workflows/ci.yml)
 
-## Overview
+## What this repo is for
 
-A practical mini Linux lab for learning core administration and troubleshooting
-skills with copy-paste commands, safe scripts, and repeatable checks.
+`linux-basics-notes` is a practical Linux fundamentals lab for learning core
+administration and troubleshooting skills with copy-paste commands, safe
+scripts, and repeatable checks.
 
-## Setup
+This repo is useful for:
+
+- building Linux command confidence before Terraform, Docker, or Kubernetes
+- revising core troubleshooting paths during interviews or labs
+- keeping a short, safe script collection for read-only system inspection
+
+## What you will learn
+
+- Filesystem layout and navigation
+- Permissions, ownership, and safe file handling
+- Users, groups, and privilege basics
+- Process inspection and control
+- Network checks and listening port inspection
+- `systemd` and journal troubleshooting
+- Basic log investigation habits
+
+## Quick start
 
 ```bash
 git clone https://github.com/<your-username>/linux-basics-notes.git
 cd linux-basics-notes
 git checkout dev
 chmod +x scripts/*.sh
+./scripts/show_sysinfo.sh
+./scripts/find_large_files.sh . 20
+./scripts/check_ports.sh
 ```
 
-## Topics Index
+## Topics index
 
-- [Filesystem](docs/filesystem.md)
-- [Identity and permissions](docs/identity-permissions.md)
-- [Processes, services, and logs](docs/processes-services-logs.md)
-- [Networking](docs/networking.md)
-- [Troubleshooting playbook](docs/troubleshooting.md)
-- [Top commands cheatsheet](CHEATSHEET.md)
-
-## Repo Map
-
-- `.github/workflows/ci.yml` - CI pipeline with markdown checks, shellcheck, and
-  script smoke tests, VM preflight, and bash syntax validation.
-- `.gitkeep` - placeholder file retained for repository scaffolding.
-- `.markdownlint.json` - markdownlint configuration used locally and in CI.
-- `docs/filesystem.md` - Linux filesystem layout, practice commands, and fixes.
-- `docs/identity-permissions.md` - combined users, groups, and file permission guide.
-- `docs/processes-services-logs.md` - combined process, systemd, and logging operations.
-- `docs/networking.md` - host networking commands and connectivity checks.
-- `docs/troubleshooting.md` - cross-topic quick triage checklist.
-- `scripts/show_sysinfo.sh` - read-only host information report.
-- `scripts/find_large_files.sh` - safe large-file scanner with optional dry-run.
-- `scripts/check_ports.sh` - listening port inspector for TCP/UDP.
-- `scripts/lint_markdown.sh` - lightweight markdown style checks.
-- `scripts/check_markdown_links.sh` - validates local markdown links.
-- `scripts/vm_preflight.sh` - checks VM readiness and required command availability.
-- `scripts/smoke_test.sh` - non-destructive script smoke test runner.
-- `CHEATSHEET.md` - top 30 Linux commands with examples.
-- `FILES_EXPLAINED.md` - one-line purpose for every tracked repo file.
-- `LINUX_BASICS.md` - legacy combined notes file kept for quick single-file reading.
-- `package.json` - Node metadata kept for optional markdown tooling usage.
-- `LICENSE` - MIT license.
-- `README.md` - onboarding, workflow, and checks entry point.
+- `LINUX_BASICS.md`
+- `docs/filesystem.md`
+- `docs/identity-permissions.md`
+- `docs/processes-services-logs.md`
+- `docs/networking.md`
+- `docs/troubleshooting.md`
+- `CHEATSHEET.md`
 
 ## Local checks
 
@@ -61,25 +57,45 @@ for f in scripts/*.sh; do bash -n "$f"; done
 ./scripts/smoke_test.sh
 ```
 
-## CI
+## Repo Map
 
-The pipeline runs 5 ordered stages:
+```text
+linux-basics-notes/
+├── .github/workflows/ci.yml        # Ordered CI checks for docs, shell, preflight, and smoke
+├── docs/                           # Topic notes and troubleshooting guides
+├── scripts/
+│   ├── show_sysinfo.sh             # Read-only host information report
+│   ├── find_large_files.sh         # Large-file scanner with dry-run support
+│   ├── check_ports.sh              # Listening port inspector for TCP/UDP
+│   ├── lint_markdown.sh            # Lightweight markdown formatting checks
+│   ├── check_markdown_links.sh     # Validates local markdown links
+│   ├── vm_preflight.sh             # Checks VM readiness and required commands
+│   └── smoke_test.sh               # Non-destructive script smoke test runner
+├── CHEATSHEET.md                   # Linux command map with practical examples
+├── FILES_EXPLAINED.md              # File-by-file repo guide
+├── LINUX_BASICS.md                 # Combined notes for quick reading
+├── package.json                    # Optional markdown tooling metadata
+└── README.md                       # Main guide and usage explanation
+```
 
-1. markdown lint + markdown link check,
-2. shellcheck,
-3. bash syntax validation (`bash -n`),
-4. VM preflight checks,
-5. scripts smoke tests.
+## CI pipeline
 
-All changes must pass CI before merge.
+The workflow is split into six stages:
+
+1. `structure-check`
+2. `markdown-and-links`
+3. `shellcheck`
+4. `bash-syntax`
+5. `vm-preflight`
+6. `scripts-smoke`
 
 ## Contributing
 
-- Branch model: `main` is stable, all work happens on `dev`.
-- Open pull requests from `dev` to `main`.
-- Repository settings should require PR review and passing CI for `main` updates.
-- Use short, human-friendly commit messages (example: `Add logs troubleshooting`).
+1. Work on `dev`.
+2. Keep commands safe and copy-paste friendly.
+3. Prefer read-only examples over destructive demos.
+4. Open a pull request from `dev` into `main`.
 
 ## License
 
-MIT (`LICENSE`).
+MIT License. See `LICENSE`.

@@ -1,32 +1,99 @@
-# Linux Top 30 Commands (with examples)
+# Linux Top Commands (with examples)
 
-1. `pwd` - show current directory. Example: `pwd`
-2. `ls -lah` - list files with details. Example: `ls -lah /etc`
-3. `cd` - change directory. Example: `cd /var/log`
-4. `mkdir -p` - create nested folders. Example: `mkdir -p ~/lab/demo`
-5. `touch` - create empty file. Example: `touch notes.txt`
-6. `cp -r` - copy files/directories. Example: `cp -r src/ backup/`
-7. `mv` - move/rename. Example: `mv old.txt new.txt`
-8. `rm -i` - remove with confirmation. Example: `rm -i temp.txt`
-9. `find` - locate files. Example: `find . -type f -name '*.log'`
-10. `du -sh` - directory size summary. Example: `du -sh /var/log`
-11. `df -h` - filesystem usage. Example: `df -h`
-12. `cat` - print full file. Example: `cat /etc/os-release`
-13. `less` - page through file. Example: `less /var/log/syslog`
-14. `head -n` - first lines. Example: `head -n 20 file.txt`
-15. `tail -f` - follow file updates. Example: `tail -f /var/log/auth.log`
-16. `grep` - search text. Example: `grep -i error app.log`
-17. `awk` - column processing. Example: `awk '{print $1}' file.txt`
-18. `sed` - stream edit. Example: `sed 's/http/https/g' config.txt`
-19. `chmod` - change permission bits. Example: `chmod 640 secret.txt`
-20. `chown` - change ownership. Example: `sudo chown dev:dev notes.txt`
-21. `id` - show UID/GID/groups. Example: `id`
-22. `ps aux` - process snapshot. Example: `ps aux | head`
-23. `pgrep -a` - find process by name. Example: `pgrep -a ssh`
-24. `kill` - send signal. Example: `kill 1234`
-25. `ip a` - interface addresses. Example: `ip a`
-26. `ip route` - routing table. Example: `ip route`
-27. `ss -tuln` - listening ports. Example: `ss -tuln`
-28. `ping -c 3` - connectivity test. Example: `ping -c 3 8.8.8.8`
-29. `systemctl status` - service state. Example: `systemctl status ssh`
-30. `journalctl -u` - unit logs. Example: `journalctl -u ssh -n 50 --no-pager`
+Use this file as the fast command map after reading `LINUX_BASICS.md`.
+
+## Filesystem and navigation
+
+- `pwd` - print current directory.
+- `ls -lah` - list files with hidden entries and sizes.
+- `tree -L 2` - show directory tree (if installed).
+- `cd /path` - change directory.
+- `mkdir -p dir/subdir` - create nested directories.
+- `cp -r src dst` - copy files and directories.
+- `mv src dst` - move or rename.
+- `rm -i file` - remove with confirmation.
+- `find . -type f -name "*.log"` - find matching files.
+- `du -sh *` - show directory sizes.
+- `df -h` - show filesystem free space.
+- `realpath file` - resolve a full canonical path.
+
+## File content and text tools
+
+- `cat file` - print full file.
+- `less file` - view file page by page.
+- `head -n 20 file` - top lines.
+- `tail -n 50 file` - last lines.
+- `tail -f file` - follow file in real time.
+- `wc -l file` - line count.
+- `sort file | uniq -c` - count unique lines.
+- `cut -d: -f1 /etc/passwd` - extract first field.
+- `awk '{print $1}' file` - print first column.
+- `sed 's/old/new/g' file` - replace text preview.
+- `grep -R "pattern" .` - search recursively for matching text.
+
+## Permissions and ownership
+
+- `ls -l` - inspect mode, owner, and group.
+- `chmod 640 file` - set rw-r-----.
+- `chmod u+x script.sh` - add execute for owner.
+- `chown user:group file` - change owner and group.
+- `chgrp group file` - change group only.
+- `umask` - view default permission mask.
+
+## Users and groups
+
+- `whoami` - current user.
+- `id` - UID, GID, and groups.
+- `groups` - group memberships.
+- `getent passwd username` - account entry lookup.
+- `sudo -l` - list allowed sudo commands.
+
+## Processes and jobs
+
+- `ps aux` - snapshot all processes.
+- `top` or `htop` - live process monitor.
+- `pgrep -a nginx` - find process by name.
+- `kill <pid>` - graceful stop.
+- `kill -9 <pid>` - force stop.
+- `jobs` - shell background jobs.
+- `bg` or `fg` - move jobs to background or foreground.
+- `nohup cmd &` - keep process running after logout.
+
+## Networking
+
+- `ip a` - interfaces and addresses.
+- `ip route` - routing table.
+- `ss -tuln` - listening ports.
+- `ping -c 3 8.8.8.8` - quick connectivity test.
+- `curl -I https://example.com` - check HTTP response headers.
+- `dig example.com` or `nslookup example.com` - DNS lookup.
+- `curl -fsS http://127.0.0.1:8000/health` - silent HTTP health probe.
+
+## Services and logs
+
+- `systemctl status ssh` - service status.
+- `systemctl restart ssh` - restart service.
+- `systemctl enable service` - start on boot.
+- `journalctl -u ssh -n 50 --no-pager` - recent unit logs.
+- `journalctl -xe --no-pager` - recent errors and context.
+- `journalctl --since "1 hour ago"` - recent events in a time window.
+
+## Archive and transfer
+
+- `tar -czf backup.tar.gz folder/` - create compressed archive.
+- `tar -xzf backup.tar.gz` - extract archive.
+- `scp file user@host:/path/` - secure copy to remote host.
+- `rsync -avh src/ dst/` - efficient sync.
+
+## Repo-specific commands
+
+```bash
+chmod +x scripts/*.sh
+./scripts/lint_markdown.sh
+./scripts/check_markdown_links.sh
+./scripts/vm_preflight.sh --strict
+./scripts/show_sysinfo.sh
+./scripts/find_large_files.sh . 20
+./scripts/check_ports.sh
+./scripts/smoke_test.sh
+```

@@ -1,28 +1,57 @@
 # Files Explained
 
-- `.github/workflows/ci.yml` - Defines the 5-stage CI pipeline.
-- `.gitkeep` - Placeholder file kept for repository structure compatibility.
-- `.markdownlint.json` - Markdown linting rules for docs consistency.
-- `CHEATSHEET.md` - Top 30 Linux commands with practical examples.
-- `docs/filesystem.md` - Filesystem concepts, commands, and quick fixes.
-- `docs/identity-permissions.md` - Merged identity and permission guide.
-- `docs/permissions.md` - Thin pointer file redirected to merged identity-permissions doc.
-- `docs/users-groups.md` - Thin pointer file redirected to merged identity-permissions doc.
-- `docs/processes.md` - Thin pointer file redirected to merged processes-services-logs doc.
-- `docs/networking.md` - Interface/route/port checks and network fixes.
-- `docs/processes-services-logs.md` - Merged process, services, and logs guide.
-- `docs/systemd.md` - Thin pointer file redirected to merged processes-services-logs doc.
-- `docs/logs.md` - Thin pointer file redirected to merged processes-services-logs doc.
-- `docs/troubleshooting.md` - Unified incident triage checklist.
-- `FILES_EXPLAINED.md` - One-line purpose for each repository file.
-- `LICENSE` - MIT license text for project reuse.
-- `LINUX_BASICS.md` - Original all-in-one Linux notes retained for compatibility.
-- `package.json` - Local tooling scripts for markdown and link checks.
-- `README.md` - Project overview, workflow, setup, and validation steps.
-- `scripts/check_ports.sh` - Read-only TCP/UDP listening port report.
-- `scripts/lint_markdown.sh` - Runs lightweight markdown formatting checks.
-- `scripts/check_markdown_links.sh` - Verifies local markdown links resolve.
-- `scripts/find_large_files.sh` - Large-file scanner with dry-run support.
-- `scripts/show_sysinfo.sh` - Host system summary for quick diagnostics.
-- `scripts/vm_preflight.sh` - Validates VM command/tool readiness for this lab.
-- `scripts/smoke_test.sh` - Non-destructive smoke tests for repository scripts.
+## Root files
+
+- `README.md`
+  - Main onboarding guide, local commands, and CI overview.
+- `CHEATSHEET.md`
+  - Quick command reference grouped by Linux topic.
+- `LINUX_BASICS.md`
+  - Main study notes with explanations and practice snippets.
+- `FILES_EXPLAINED.md`
+  - File-by-file explanation for learners and reviewers.
+- `LICENSE`
+  - Repository license.
+- `package.json`
+  - Optional metadata for Markdown tooling.
+- `.markdownlint.json`
+  - Markdown lint configuration.
+
+## Docs
+
+- `docs/filesystem.md`
+  - Filesystem concepts, commands, and quick practice.
+- `docs/identity-permissions.md`
+  - Combined users, groups, and permission guide.
+- `docs/networking.md`
+  - Interface, route, port, and connectivity notes.
+- `docs/processes-services-logs.md`
+  - Process, service, and logging operations.
+- `docs/troubleshooting.md`
+  - Cross-topic quick triage checklist.
+- `docs/permissions.md`, `docs/users-groups.md`, `docs/processes.md`,
+  `docs/systemd.md`, `docs/logs.md`
+  - Thin compatibility pointer docs retained by the repo.
+
+## Scripts
+
+- `scripts/show_sysinfo.sh`
+  - Prints safe system information such as OS, CPU, memory, and disk details.
+- `scripts/find_large_files.sh`
+  - Searches for files larger than a chosen threshold without modifying them.
+- `scripts/check_ports.sh`
+  - Lists local listening TCP and UDP ports for troubleshooting.
+- `scripts/lint_markdown.sh`
+  - Lightweight Markdown checks used locally and in CI.
+- `scripts/check_markdown_links.sh`
+  - Validates local Markdown links.
+- `scripts/vm_preflight.sh`
+  - Checks for the commands expected in a Linux VM lab.
+- `scripts/smoke_test.sh`
+  - Runs safe validation checks so CI can confirm the scripts still work.
+
+## GitHub Actions
+
+- `.github/workflows/ci.yml`
+  - Runs structure checks, docs checks, shell linting, syntax validation,
+    VM preflight, and final smoke tests.

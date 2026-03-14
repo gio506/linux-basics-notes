@@ -1,4 +1,10 @@
 {
+<<<<<<< HEAD
   "default": true,
   "MD013": false
+=======
+  "MD013": {
+    "line_length": 140
+  }
+>>>>>>> 78793e9 (Improve Linux notes validation and repo guide)
 }
