@@ -1,6 +1,6 @@
 # linux-basics-notes
 
-[![CI](https://github.com/<your-username>/linux-basics-notes/actions/workflows/ci.yml/badge.svg)](https://github.com/<your-username>/linux-basics-notes/actions/workflows/ci.yml)
+[![CI](https://github.com/gio506/linux-basics-notes/actions/workflows/ci.yml/badge.svg)](https://github.com/gio506/linux-basics-notes/actions/workflows/ci.yml)
 
 ## What this repo is for
 

@@ -13,6 +13,7 @@ while IFS= read -r -d '' file; do
     target="${target%%#*}"
     [[ -z "$target" ]] && continue
     [[ "$target" =~ ^https?:// ]] && continue
+    [[ "$target" =~ ^mailto: ]] && continue
     path="$(dirname "$file")/$target"
     if [[ ! -e "$path" ]]; then
       echo "Broken local link in $file -> $target"
