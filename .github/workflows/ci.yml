@@ -65,6 +65,9 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y shellcheck
 
+      - name: Normalize shell file line endings
+        run: find scripts -type f -name '*.sh' -print0 | xargs -0 sed -i 's/\r$//'
+
       - name: Run ShellCheck
         run: shellcheck scripts/*.sh
 
