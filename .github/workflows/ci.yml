@@ -4,13 +4,19 @@ on:
   push:
     branches: [main, dev]
   pull_request:
+  workflow_dispatch:
 
 permissions:
   contents: read
 
+concurrency:
+  group: linux-basics-ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   structure-check:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -42,6 +48,7 @@ jobs:
     name: Markdown lint and link check
     runs-on: ubuntu-latest
     needs: structure-check
+    timeout-minutes: 10
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -56,6 +63,7 @@ jobs:
     name: ShellCheck
     runs-on: ubuntu-latest
     needs: markdown-and-links
+    timeout-minutes: 10
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -75,6 +83,7 @@ jobs:
     name: Bash syntax validation
     runs-on: ubuntu-latest
     needs: shellcheck
+    timeout-minutes: 5
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -89,6 +98,7 @@ jobs:
     name: VM preflight checks
     runs-on: ubuntu-latest
     needs: bash-syntax
+    timeout-minutes: 10
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -100,9 +110,39 @@ jobs:
     name: Script smoke tests
     runs-on: ubuntu-latest
     needs: vm-preflight
+    timeout-minutes: 10
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
       - name: Run smoke script
         run: ./scripts/smoke_test.sh
+
+  final-status-gate:
+    name: Final status gate
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    if: always()
+    needs:
+      - structure-check
+      - markdown-and-links
+      - shellcheck
+      - bash-syntax
+      - vm-preflight
+      - scripts-smoke
+    steps:
+      - name: Aggregate results
+        shell: bash
+        env:
+          STRUCTURE: ${{ needs.structure-check.result }}
+          MARKDOWN: ${{ needs.markdown-and-links.result }}
+          SHELLCHECK: ${{ needs.shellcheck.result }}
+          SYNTAX: ${{ needs.bash-syntax.result }}
+          PREFLIGHT: ${{ needs.vm-preflight.result }}
+          SMOKE: ${{ needs.scripts-smoke.result }}
+        run: |
+          for result in "$STRUCTURE" "$MARKDOWN" "$SHELLCHECK" "$SYNTAX" "$PREFLIGHT" "$SMOKE"; do
+            if [ "$result" = "failure" ] || [ "$result" = "cancelled" ]; then
+              exit 1
+            fi
+          done
